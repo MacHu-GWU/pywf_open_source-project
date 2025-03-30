@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from pathlib import Path
+from pathlib_mate import Path
 
-dir_here = Path(__file__).absolute().parent
-dir_package = dir_here
-PACKAGE_NAME = dir_package.name
+dir_here = Path.dir_here(__file__)
+dir_package = dir_here.parent
+PACKAGE_NAME = dir_here.basename
 
-dir_project_root = dir_package.parent
+dir_project_root = Path.dir_here(__file__).parent
 
 # ------------------------------------------------------------------------------
 # Virtual Environment Related
