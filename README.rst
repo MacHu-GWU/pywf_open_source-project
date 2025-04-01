@@ -6,7 +6,7 @@
 .. image:: https://github.com/MacHu-GWU/pywf_open_source-project/actions/workflows/main.yml/badge.svg
     :target: https://github.com/MacHu-GWU/pywf_open_source-project/actions?query=workflow:CI
 
-.. image:: https://codecov.io/gh/MacHu-GWU/pywf_open_source-project/branch/main/graph/badge.svg
+.. .. image:: https://codecov.io/gh/MacHu-GWU/pywf_open_source-project/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/MacHu-GWU/pywf_open_source-project
 
 .. image:: https://img.shields.io/pypi/v/pywf-open-source.svg
