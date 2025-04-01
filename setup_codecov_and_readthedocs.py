@@ -224,17 +224,17 @@ if __name__ == "__main__":
         owner_username=codecov_owner_username,
         token_name=codecov_token_name,
     )
-    codecov_token = path_codecov_token.read_text().strip()
+    codecov_token = path_codecov_token.read_text(encoding="utf-8").strip()
     path_github_token = get_github_token_file(
         owner_username=github_owner_username,
         token_name=github_token_name,
     )
-    github_token = path_github_token.read_text().strip()
+    github_token = path_github_token.read_text(encoding="utf-8").strip()
     path_readthedocs_token = get_readthedocs_token_file(
         owner_username=readthedocs_owner_username,
         token_name=readthedocs_token_name,
     )
-    readthedocs_token = path_readthedocs_token.read_text().strip()
+    readthedocs_token = path_readthedocs_token.read_text(encoding="utf-8").strip()
 
     if service != "github":
         raise ValueError("Only support github service.")
