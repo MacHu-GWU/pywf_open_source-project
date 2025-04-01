@@ -19,6 +19,7 @@ sub packages and modules
     define_05_docs <define_05_docs>
     define_06_build <define_06_build>
     define_07_publish <define_07_publish>
+    define_08_saas <define_08_saas>
     helpers <helpers>
     logger <logger>
     
