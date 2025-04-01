@@ -83,14 +83,14 @@ It implements the best practice mentioned in `THIS DOCUMENT <https://dev-exp-sha
 Install
 ------------------------------------------------------------------------------
 
-``cookiecutter_pyproject_demo`` is released on PyPI, so all you need is to:
+``pywf_open_source`` is released on PyPI, so all you need is to:
 
 .. code-block:: console
 
-    $ pip install cookiecutter-pyproject-demo
+    $ pip install pywf-open-source
 
 To upgrade to latest version:
 
 .. code-block:: console
 
-    $ pip install --upgrade cookiecutter-pyproject-demo
+    $ pip install --upgrade pywf-open-source

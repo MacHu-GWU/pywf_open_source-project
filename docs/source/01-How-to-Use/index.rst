@@ -1,4 +1,7 @@
-Sample RestructuredText Document
+How to Use
 ==============================================================================
+.. dropdown:: how_to_use.py
 
-This is a sample rst document.
+    .. literalinclude:: ./how_to_use.py
+       :language: python
+       :linenos:
