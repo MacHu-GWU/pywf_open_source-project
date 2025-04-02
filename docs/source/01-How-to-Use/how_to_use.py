@@ -20,3 +20,7 @@ pywf.build_doc()
 pywf.view_doc()
 pywf.poetry_build()
 pywf.twine_upload()
+pywf.setup_codecov_io_upload_token_on_github()
+pywf.setup_readthedocs_project()
+pywf.publish_to_github_release()
+

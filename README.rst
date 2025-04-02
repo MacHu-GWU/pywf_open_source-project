@@ -75,7 +75,9 @@ It assumes the following code folder structure::
     /tests # unit test folder
     /pyproject.toml # Python project configuration file, no setup.py
 
-It implements the best practice mentioned in `THIS DOCUMENT <https://dev-exp-share.readthedocs.io/en/latest/search.html?q=The+New+Way+-+Python+Workflow+%28pywf%29+Library+Collection&check_keywords=yes&area=default>`_.
+Note:
+
+    this project follows the best practice mentioned in `THIS DOCUMENT <https://dev-exp-share.readthedocs.io/en/latest/search.html?q=Creating+Reusable+Project+Templates%3A+From+Concept+to+Implementation&check_keywords=yes&area=default>`_.
 
 
 .. _install:
