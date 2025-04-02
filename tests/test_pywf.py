@@ -91,8 +91,10 @@ def test():
     pywf.poetry_install_test()
     pywf.poetry_install_doc()
     pywf.poetry_export()
-    pywf.build_doc()
-    pywf.view_doc()
+    # only build doc on Linux
+    if sys.platform == "linux":
+        pywf.build_doc()
+        pywf.view_doc()
     pywf.python_build()
     pywf.poetry_build()
     pywf.remove_virtualenv()
