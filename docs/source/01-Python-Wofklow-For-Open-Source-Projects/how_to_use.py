@@ -3,7 +3,10 @@
 from pathlib import Path
 from pywf_open_source.api import PyWf
 
+# Initialize the PyWf object.
 pywf = PyWf.from_pyproject_toml(Path("/path/to/pyproject.toml"))
+
+# Perform common development operations.
 pywf.create_virtualenv()
 pywf.remove_virtualenv()
 pywf.poetry_lock()
@@ -23,4 +26,3 @@ pywf.twine_upload()
 pywf.setup_codecov_io_upload_token_on_github()
 pywf.setup_readthedocs_project()
 pywf.publish_to_github_release()
-

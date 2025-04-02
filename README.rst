@@ -58,26 +58,45 @@ Welcome to ``pywf_open_source`` Documentation
 The library automates common operations for projects using:
 
 - A public `GitHub repo <https://github.com/>`_ to host your project.
-- A public `ReadTheDocs <https://readthedocs.org/>`_ project to host your documentation.
+- Use `poetry <https://python-poetry.org/>`_ to manage your project dependencies and build distribution package.
+- Use `pytest <https://docs.pytest.org/>`_ unit test framework for testing.
 - Use `GitHub Actions <https://github.com/features/actions>`_ to run your test.
 - Use `Codecov.io <https://about.codecov.io/>`_ to publish your test coverage result.
+- Use `sphinx-doc <https://www.sphinx-doc.org/>`_ to build your documentation website.
+- A public `ReadTheDocs <https://readthedocs.org/>`_ project to host your documentation website.
+- Use `twine <https://twine.readthedocs.io/>`_ to publish your package to PyPI.
 - Use `PyPI <https://pypi.org/>`_ to publish your package.
 - Use `GitHub Release <https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases>`_ to track your historical assets.
 
 It assumes the following code folder structure::
 
-    /${package_name}
-    /${package_name}/__init__.py
-    /${package_name}/*.py
-    /docs
-    /docs/source # documentation source folder
-    /docs/source/conf.py # sphinx doc configuration file
-    /tests # unit test folder
-    /pyproject.toml # Python project configuration file, no setup.py
+    .github/workflows/main.yml # GitHub Actions CI/CD configuration file
+    ${package_name}/
+    ${package_name}/__init__.py
+    ${package_name}/*.py
+    docs/
+    docs/source # documentation source folder
+    docs/source/conf.py # sphinx doc configuration file
+    tests/ # unit test folder
+    bin/ # development workflow automation scripts
+    bin/pywf.py
+    bin/s01_....py
+    bin/s02_....py
+    bin/...
+    Makefile # makefile for automation
+    .coveragerc # code coverage test configuration file
+    codecov.yml # code coverage CI rules configuration file
+    .readthedocs.yml # readthedocs.org configuration file
+    pyproject.toml # Python project configuration file, no setup.py
 
-Note:
 
-    this project follows the best practice mentioned in `THIS DOCUMENT <https://dev-exp-share.readthedocs.io/en/latest/search.html?q=Creating+Reusable+Project+Templates%3A+From+Concept+to+Implementation&check_keywords=yes&area=default>`_.
+Project Maintainer Note
+------------------------------------------------------------------------------
+This project follows the best practice mentioned in `THIS DOCUMENT <https://dev-exp-share.readthedocs.io/en/latest/search.html?q=Creating+Reusable+Project+Templates%3A+From+Concept+to+Implementation&check_keywords=yes&area=default>`_.
+
+- **Seed Repository**: `cookiecutter_pywf_open_source_demo-project <https://github.com/MacHu-GWU/cookiecutter_pywf_open_source_demo-project>`_
+- **Automation Library**: `pywf_open_source-project <https://github.com/MacHu-GWU/pywf_open_source-project>`_
+- **Cookiecutter Template**: `cookiecutter-pywf_open_source <https://github.com/MacHu-GWU/cookiecutter-pywf_open_source>`_
 
 
 .. _install:
