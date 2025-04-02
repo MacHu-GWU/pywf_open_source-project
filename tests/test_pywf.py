@@ -91,6 +91,7 @@ def test():
     pywf.view_doc()
     pywf.remove_virtualenv()
     pywf.remove_virtualenv() # do it twice to test the idempotency
+    pywf.create_virtualenv() # we need to recreate virtualenv to upload cache to GitHub Action
     # Don't call run_unit_test or run_cov_test here to avoid recursive test calls
 
 
