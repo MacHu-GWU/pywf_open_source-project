@@ -91,12 +91,12 @@ def test():
     pywf.poetry_install_test()
     pywf.poetry_install_doc()
     pywf.poetry_export()
-    # only build doc on Linux
+    # only build doc and build dist package on Linux
     if sys.platform == "linux":
         pywf.build_doc()
         pywf.view_doc()
-    pywf.python_build()
-    pywf.poetry_build()
+        pywf.python_build()
+        pywf.poetry_build()
     pywf.remove_virtualenv()
     pywf.remove_virtualenv() # do it twice to test the idempotency
     pywf.create_virtualenv() # we need to recreate virtualenv to upload cache to GitHub Action
