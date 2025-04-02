@@ -250,7 +250,44 @@ These wrappers initialize PyWf using your project configuration and execute spec
 The included Makefile provides a unified command interface:
 
 .. literalinclude:: ../../../Makefile
+   :language: make
    :linenos:
+
+When you type ``make``, you will see:
+
+.. code-block:: bash
+
+    $ make
+    help                                     ** Show this help message
+    venv-create                              ** Create Virtual Environment
+    venv-remove                              ** Remove Virtual Environment
+    poetry-lock                              Resolve dependencies using poetry, update poetry.lock file
+    install-root                             Install Package itself without any dependencies
+    install                                  ** Install main dependencies and Package itself
+    install-dev                              Install Development Dependencies
+    install-test                             Install Test Dependencies
+    install-doc                              Install Document Dependencies
+    install-automation                       Install Dependencies for Automation Script
+    install-all                              Install All Dependencies
+    poetry-export                            Export dependencies to requirements.txt
+    test                                     ** Run test
+    test-only                                Run test without checking test dependencies
+    cov                                      ** Run code coverage test
+    cov-only                                 Run code coverage test without checking test dependencies
+    int                                      ** Run integration test
+    int-only                                 Run integration test without checking test dependencies
+    view-cov                                 View code coverage test report
+    build-doc                                Build documentation website locally
+    view-doc                                 View documentation website locally
+    build                                    Build Python library distribution package
+    publish                                  Publish Python library to Public PyPI
+    release                                  Create Github Release using current version
+    setup-codecov                            Setup Codecov Upload token in GitHub Action Secrets
+    setup-rtd                                Create ReadTheDocs Project
+
+When you type ``make cov``, it actually runs ``python bin/s03_2_run_cov_test.py``
+
+You may also edit the ``Makefile`` yourself to use different global Python instead of ``~/.pyenv/shims/python``.
 
 This approach offers several advantages:
 
