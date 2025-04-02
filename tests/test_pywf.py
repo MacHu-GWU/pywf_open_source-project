@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import sys
 from pywf_open_source.api import PyWf
 from pywf_open_source.paths import path_pyproject_toml
 
 
 def test():
     pywf = PyWf.from_pyproject_toml(path_pyproject_toml)
+    dev_python = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+    pywf.toml_data["tool"]["pywf"]["dev_python"] = dev_python
 
     # --- property
     _ = pywf.dir_project_root
