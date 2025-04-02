@@ -87,8 +87,11 @@ def test():
     pywf.poetry_install_dev()
     pywf.poetry_install_test()
     pywf.poetry_install_doc()
+    pywf.poetry_export()
     pywf.build_doc()
     pywf.view_doc()
+    pywf.python_build()
+    pywf.poetry_build()
     pywf.remove_virtualenv()
     pywf.remove_virtualenv() # do it twice to test the idempotency
     pywf.create_virtualenv() # we need to recreate virtualenv to upload cache to GitHub Action
