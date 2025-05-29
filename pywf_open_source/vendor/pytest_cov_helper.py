@@ -36,6 +36,7 @@ def run_unit_test(
     bin_pytest = Path(sys.executable).parent / "pytest"
     args = [
         f"{bin_pytest}",
+        "-vv",
         "-s",
         "--tb=native",
         script,
@@ -125,6 +126,7 @@ def run_cov_test(
         module = module[:-3]
     args = [
         f"{bin_pytest}",
+        "-vv",
         "-s",
         "--tb=native",
         f"--rootdir={root_dir}",

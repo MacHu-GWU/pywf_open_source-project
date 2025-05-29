@@ -42,6 +42,7 @@ def test():
     _ = pywf.readthedocs_user_field
     _ = pywf.readthedocs_token_field
     _ = pywf.readthedocs_project_name
+    _ = pywf.readthedocs_project_name_slug
 
     _ = pywf.dir_home
     _ = pywf.dir_venv

@@ -37,4 +37,5 @@ x.y.z (Backlog)
     - ``PyWf.twine_upload``
     - ``PyWf.setup_codecov_io_upload_token_on_github``
     - ``PyWf.setup_readthedocs_project``
+    - ``PyWf.edit_github_repo_metadata``
     - ``PyWf.publish_to_github_release``
