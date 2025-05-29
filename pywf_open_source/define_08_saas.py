@@ -31,6 +31,7 @@ class PyWfSaas:  # pragma: no cover
 
     @cached_property
     def gh(self: "PyWf") -> "Github":
+        print(self.github_token)
         return Github(self.github_token)
 
     @logger.emoji_block(
