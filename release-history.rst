@@ -15,6 +15,26 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
-0.1.1 (1970-01-01)
+0.1.1 (2025-05-29)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- First release
+- First public API stable release
+- Add the following public APIs:
+    - ``PyWf.create_virtualenv``
+    - ``PyWf.remove_virtualenv``
+    - ``PyWf.poetry_lock``
+    - ``PyWf.poetry_install_only_root``
+    - ``PyWf.poetry_install``
+    - ``PyWf.poetry_install_dev``
+    - ``PyWf.poetry_install_test``
+    - ``PyWf.poetry_install_doc``
+    - ``PyWf.poetry_install_all``
+    - ``PyWf.run_unit_test``
+    - ``PyWf.run_cov_test``
+    - ``PyWf.view_cov``
+    - ``PyWf.build_doc``
+    - ``PyWf.view_doc``
+    - ``PyWf.poetry_build``
+    - ``PyWf.twine_upload``
+    - ``PyWf.setup_codecov_io_upload_token_on_github``
+    - ``PyWf.setup_readthedocs_project``
+    - ``PyWf.publish_to_github_release``

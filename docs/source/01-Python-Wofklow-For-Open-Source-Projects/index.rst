@@ -64,19 +64,33 @@ PyWf reads configuration from the `[tool.pywf]` section in your `pyproject.toml`
 
     [tool.pywf]
     dev_python = "3.11.8"
-    github_account = "YourUsername"
-    # Create GitHub token in https://github.com/settings/tokens and put the token at
-    # ``${HOME}/.github/${github_account}/pac/${github_token_name}.txt``
-    github_token_name = "your-token-file-name"
-    codecov_account = "YourUsername"
-    # Create Codecov token in https://app.codecov.io/account/gh/${codecov_account}/access and put the token at
-    # ``${HOME}/.codecov/github/${codecov_account}/${codecov_token_name}.txt``
-    codecov_token_name = "your-token-file-name"
-    readthedocs_username = "yourusername"
-    readthedocs_project_name = "your-project-file-name"
+    # --- github.com
+    # Put your GitHub account username in ``${HOME}/home_secret.json`` at
+    # ``providers.github.accounts.${github_account_field}.account_id``
+    github_account_field = "sh"
+    github_user_field = "sh"
+    # Create GitHub token in https://github.com/settings/tokens and put the token in
+    # ``${HOME}/home_secret.json`` at
+    # ``providers.github.accounts.${github_account_field}.users.${github_user_field}.secrets.${github_token_field}.value``
+    github_token_field = "full_repo_access"
+    # --- codecov.io (for code coverage test report)
+    # Put your Codecov account username in ``${HOME}/home_secret.json`` at
+    # ``providers.codecov.accounts.${codecov_account_field}.account_id``
+    codecov_account_field = "sh"
+    codecov_user_field = "sh"
+    # Create Codecov token in https://app.codecov.io/account/gh/${codecov_account}/access and put the token in
+    # ``${HOME}/home_secret.json`` at
+    # ``providers.codecov.accounts.${codecov_account_field}.users.${codecov_user_field}.secrets.${codecov_token_field}.value``
+    codecov_token_field = "dev"
+    # --- readthedocs.org (for documentation hosting)
+    readthedocs_account_field = "sh"
+    readthedocs_user_field = "sh"
     # Create Readthedocs token in https://app.readthedocs.org/accounts/tokens/ and put the token at
-    # ``${HOME}/.readthedocs/${readthedocs_username}/${readthedocs_token_name}.txt``
-    readthedocs_token_name = "your-token"
+    # ``${HOME}/home_secret.json`` at
+    # ``providers.readthedocs.accounts.${readthedocs_account_field}.users.${readthedocs_user_field}.secrets.${readthedocs_token_field}.value``
+    readthedocs_token_field = "dev"
+    # Readthedocs project name, usually it is the same as your project name
+    readthedocs_project_name = "pywf_open_source"
 
 
 Unified Command System

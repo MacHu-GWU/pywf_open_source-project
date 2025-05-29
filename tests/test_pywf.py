@@ -25,18 +25,23 @@ def test():
     _ = pywf.py_ver_major
     _ = pywf.py_ver_minor
     _ = pywf.py_ver_micro
+    _ = pywf.github_account_field
+    _ = pywf.github_user_field
+    _ = pywf.github_token_field
     _ = pywf.github_account
-    _ = pywf.github_token_name
     _ = pywf.git_repo_name
     _ = pywf.github_repo_fullname
     _ = pywf.github_repo_url
     _ = pywf.github_actions_secrets_settings_url
     _ = pywf.github_versioned_release_url
+    _ = pywf.codecov_account_field
+    _ = pywf.codecov_user_field
+    _ = pywf.codecov_token_field
     _ = pywf.codecov_account
-    _ = pywf.codecov_token_name
-    _ = pywf.readthedocs_username
+    _ = pywf.readthedocs_account_field
+    _ = pywf.readthedocs_user_field
+    _ = pywf.readthedocs_token_field
     _ = pywf.readthedocs_project_name
-    _ = pywf.readthedocs_token_name
 
     _ = pywf.dir_home
     _ = pywf.dir_venv
@@ -76,9 +81,6 @@ def test():
     _ = pywf.path_pyproject_toml
     _ = pywf.dir_build
     _ = pywf.dir_dist
-    _ = pywf.path_github_token_file
-    _ = pywf.path_codecov_token_file
-    _ = pywf.path_readthedocs_token_file
     _ = pywf.path_bin_aws
 
     # --- action
