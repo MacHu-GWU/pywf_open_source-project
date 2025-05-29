@@ -162,6 +162,14 @@ class HomeSecret:
         """
         Load and cache the secret data from the ``home_secret.json`` file.
         """
+        # Synchronization: Copy source file to runtime location if it exists
+        # This allows developers to edit the local file and have changes automatically
+        # propagated to the runtime environment
+        if p_here_secret.exists():
+            p_home_secret.write_text(
+                p_here_secret.read_text(encoding="utf-8"),
+                encoding="utf-8",
+            )
         if not p_home_secret.exists():
             raise FileNotFoundError(f"Secret file not found at {p_home_secret}")
         return json.loads(p_home_secret.read_text(encoding="utf-8"))
