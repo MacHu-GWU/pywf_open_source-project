@@ -33,12 +33,13 @@ dir_dst = dir_project_root / repo_name
 
 shutil.rmtree(dir_dst, ignore_errors=True)
 
-for path_src in dir_src.glob("**/*.*"):
+for path_src in dir_src.rglob("*"):
     relpath = path_src.relative_to(dir_src)
-    if path_pick.is_match(str(relpath)):
-        path_dst = dir_dst / relpath
-        try:
-            path_dst.write_bytes(path_src.read_bytes())
-        except FileNotFoundError:
-            path_dst.parent.mkdir(parents=True, exist_ok=True)
-            path_dst.write_bytes(path_src.read_bytes())
+    if path_src.is_file():
+        if path_pick.is_match(str(relpath)):
+            path_dst = dir_dst / relpath
+            try:
+                path_dst.write_bytes(path_src.read_bytes())
+            except FileNotFoundError:
+                path_dst.parent.mkdir(parents=True, exist_ok=True)
+                path_dst.write_bytes(path_src.read_bytes())
