@@ -50,10 +50,10 @@ class PyWfSaas:
 
         :returns: a boolean flag to indicate whether the operation is performed.
         """
-        repo = self.gh.get_repo(self.github_repo_fullname)
         with logger.indent():
             logger.info(f"preview at {self.github_repo_url}")
         if real_run:  # pragma: no cover
+            repo = self.gh.get_repo(self.github_repo_fullname)
             repo.edit(
                 description=self.package_description,
                 homepage=self.readthedocs_doc_site_url,
