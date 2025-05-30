@@ -6,6 +6,7 @@ don't use PyCharm IDE, use a terminal instead.
 """
 
 import os
+import sys
 import pytest
 
 from pywf_open_source.paths import dir_project_root
@@ -26,8 +27,8 @@ class Test:
             / "pyproject.toml"
         )
         cls.pywf = PyWf.from_pyproject_toml(path_pyproject_toml)
-        # dev_python = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
-        # pywf.toml_data["tool"]["pywf"]["dev_python"] = dev_python
+        dev_python = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+        cls.pywf.toml_data["tool"]["pywf"]["dev_python"] = dev_python
 
     def test_define(self):
         pywf = self.pywf
