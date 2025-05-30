@@ -7,6 +7,7 @@ Testing Automation for Python Projects.
 import typing as T
 import subprocess
 import dataclasses
+from pathlib import Path
 
 from .vendor.emoji import Emoji
 from .vendor.os_platform import OPEN_COMMAND
@@ -20,10 +21,27 @@ if T.TYPE_CHECKING:  # pragma: no cover
 
 
 @dataclasses.dataclass
-class PyWfTests:  # pragma: no cover
+class PyWfTests:
     """
     Namespace class for testing related automation.
     """
+
+    def _do_we_run_test(
+        self: "PyWf",
+        dir_tests: Path,
+    ) -> bool:
+        flag = True
+        if self.path_venv_bin_pytest.exists() is False:  # pragma: no cover
+            logger.error(
+                f"{Emoji.red_circle} pytest (.venv/bin/pytest) is not installed in the virtual environment."
+            )
+            flag = False
+        if dir_tests.exists() is False:  # pragma: no cover
+            logger.error(
+                f"{Emoji.red_circle} tests directory {dir_tests} does not exist."
+            )
+            flag = False
+        return flag
 
     @logger.emoji_block(
         msg="Run Unit Test",
@@ -43,6 +61,9 @@ class PyWfTests:  # pragma: no cover
 
             pytest tests -s --rootdir=/path/to/project/root
         """
+        flag = self._do_we_run_test(self.dir_tests)
+        if not flag:  # pragma: no cover
+            raise RuntimeError(f"{Emoji.red_circle} unit test not run!")
         args = [
             f"{self.path_venv_bin_pytest}",
             f"{self.dir_tests}",
@@ -51,16 +72,13 @@ class PyWfTests:  # pragma: no cover
         ]
         if quiet:
             args.append("--quiet")
-        print_command(args)
-        if real_run:
-            with temp_cwd(self.dir_project_root):
-                subprocess.run(args, check=True)
+        self.run_command(args, real_run)
 
     def run_unit_test(
         self: "PyWf",
         real_run: bool = True,
         verbose: bool = True,
-    ):  # pragma: no cover
+    ):
         with logger.disabled(not verbose):
             return self._run_unit_test(
                 real_run=real_run,
@@ -87,6 +105,9 @@ class PyWfTests:  # pragma: no cover
 
             pytest -s --tb=native --rootdir=/path/to/project/root --cov=package_name --cov-report term-missing --cov-report html:/path/to/htmlcov tests
         """
+        flag = self._do_we_run_test(self.dir_tests)
+        if not flag:  # pragma: no cover
+            raise RuntimeError(f"{Emoji.red_circle} coverage test not run!")
         args = [
             f"{self.path_venv_bin_pytest}",
             "-s",
@@ -101,10 +122,7 @@ class PyWfTests:  # pragma: no cover
         ]
         if quiet:
             args.append("--quiet")
-        print_command(args)
-        if real_run:
-            with temp_cwd(self.dir_project_root):
-                subprocess.run(args, check=True)
+        self.run_command(args, real_run)
 
     def run_cov_test(
         self: "PyWf",
@@ -141,7 +159,7 @@ class PyWfTests:  # pragma: no cover
             start htmlcov/index.html
         """
         args = [OPEN_COMMAND, f"{self.path_htmlcov_index_html}"]
-        if real_run:
+        if real_run:  # pragma: no cover
             subprocess.run(args)
 
     def view_cov(
@@ -165,7 +183,7 @@ class PyWfTests:  # pragma: no cover
         self: "PyWf",
         real_run: bool = True,
         quiet: bool = False,
-    ):
+    ):  # pragma: no cover
         """
         A wrapper of ``pytest`` command to run integration test.
 
@@ -175,6 +193,9 @@ class PyWfTests:  # pragma: no cover
 
             pytest tests_int -s --rootdir=/path/to/project/root
         """
+        flag = self._do_we_run_test(self.dir_tests_int)
+        if not flag:  # pragma: no cover
+            raise RuntimeError(f"{Emoji.red_circle} integration test not run!")
         args = [
             f"{self.path_venv_bin_pytest}",
             f"{self.dir_tests_int}",
@@ -183,10 +204,7 @@ class PyWfTests:  # pragma: no cover
         ]
         if quiet:
             args.append("--quiet")
-        print_command(args)
-        if real_run:
-            with temp_cwd(self.dir_project_root):
-                subprocess.run(args, check=True)
+        self.run_command(args, real_run)
 
     def run_int_test(
         self: "PyWf",
@@ -209,7 +227,7 @@ class PyWfTests:  # pragma: no cover
         self: "PyWf",
         real_run: bool = True,
         quiet: bool = False,
-    ):
+    ):  # pragma: no cover
         """
         A wrapper of ``pytest`` command to run load test.
 
@@ -219,6 +237,9 @@ class PyWfTests:  # pragma: no cover
 
             pytest tests_load -s --rootdir=/path/to/project/root
         """
+        flag = self._do_we_run_test(self.dir_tests_load)
+        if not flag:  # pragma: no cover
+            raise RuntimeError(f"{Emoji.red_circle} load test not run!")
         args = [
             f"{self.path_venv_bin_pytest}",
             f"{self.dir_tests_load}",
@@ -227,10 +248,7 @@ class PyWfTests:  # pragma: no cover
         ]
         if quiet:
             args.append("--quiet")
-        print_command(args)
-        if real_run:
-            with temp_cwd(self.dir_project_root):
-                subprocess.run(args, check=True)
+        self.run_command(args, real_run)
 
     def run_load_test(
         self: "PyWf",

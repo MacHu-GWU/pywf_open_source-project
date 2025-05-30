@@ -10,6 +10,10 @@ import subprocess
 import dataclasses
 from pathlib import Path
 from functools import cached_property
+from .vendor.better_pathlib import temp_cwd
+
+from .helpers import print_command
+from .logger import logger
 
 if T.TYPE_CHECKING:  # pragma: no cover
     from .define import PyWf
@@ -20,6 +24,31 @@ class PyWfPaths:
     """
     Namespace class for accessing important paths.
     """
+
+    def run_command(
+        self: "PyWf",
+        args: list[str],
+        real_run: bool,
+        cwd: T.Optional[Path] = None,
+        check: bool = True,
+    ):
+        """
+        Run a command in a subprocess, also print the command for debug,
+        and optionally change the current working directory.
+
+        :param args: The command and its arguments to run.
+        :param real_run: If True, actually run the command; if False, just print it.
+        :param cwd: The directory to change to before running the command.
+        :param check: If True, raise an exception if the command fails.
+        """
+        if cwd is None:
+            cwd = self.dir_project_root
+        logger.info(f"cd to: {cwd}")
+        print_command(args)
+        if real_run is True:
+            return subprocess.run(args, cwd=cwd, check=check)
+            # with temp_cwd(cwd):
+            #     return subprocess.run(args, check=check)
 
     @cached_property
     def dir_home(self: "PyWf") -> Path:
@@ -290,7 +319,7 @@ class PyWfPaths:
         return self.dir_sphinx_doc_build.joinpath("html")
 
     @property
-    def path_sphinx_doc_build_index_html(self: "PyWf") -> Path:  # pragma: no cover
+    def path_sphinx_doc_build_index_html(self: "PyWf") -> Path:
         """
         The built Sphinx doc site entry HTML file path.
 
@@ -299,12 +328,14 @@ class PyWfPaths:
         if self.dir_sphinx_doc_source.joinpath("index.rst").exists():
             return self.dir_sphinx_doc_build_html.joinpath("index.html")
 
-        if self.dir_sphinx_doc_source.joinpath("README.rst").exists():
+        if self.dir_sphinx_doc_source.joinpath(
+            "README.rst"
+        ).exists():  # pragma: no cover
             return self.dir_sphinx_doc_build_html.joinpath("README.html")
 
         raise FileNotFoundError(
             str(self.dir_sphinx_doc_build_html.joinpath("index.html"))
-        )
+        )  # pragma: no cover
 
     # --------------------------------------------------------------------------
     # Poetry

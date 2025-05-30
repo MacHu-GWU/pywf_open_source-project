@@ -25,21 +25,6 @@ def sha256_of_bytes(b: bytes) -> str:  # pragma: no cover
     return sha256.hexdigest()
 
 
-def extract_digit_tokens(text: str) -> T.List[str]:
-    """
-    Extract all consecutive digit tokens from a string.
-
-    Example:
-
-        >>> extract_digit_tokens("1.23.456")
-        ["1", "23", "456"]
-    """
-    for c in list(text):
-        if not c.isdigit():
-            text = text.replace(c, " ")
-    return [token.strip() for token in text.split() if token.strip()]
-
-
 def bump_version(
     current_version: str,
     major: bool = False,

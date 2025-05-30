@@ -20,7 +20,6 @@ from .vendor.better_pathlib import temp_cwd
 from .logger import logger
 from .helpers import sha256_of_bytes, print_command
 
-
 if T.TYPE_CHECKING:  # pragma: no cover
     from .define import PyWf
 
@@ -38,12 +37,9 @@ class PyWfDeps:
         quiet: bool,
     ):
         args = [f"{self.path_bin_poetry}", *args]
-        if quiet:
+        if quiet:  # pragma: no cover
             args.append("--quiet")
-        print_command(args)
-        if real_run:
-            with temp_cwd(self.dir_project_root):
-                subprocess.run(args, check=True)
+        self.run_command(args, real_run)
 
     @logger.emoji_block(
         msg="Resolve Dependencies Tree",
@@ -169,7 +165,7 @@ class PyWfDeps:
         self: "PyWf",
         real_run: bool = True,
         verbose: bool = True,
-    ):  # pragma: no cover
+    ):
         with logger.disabled(disable=not verbose):
             return self._poetry_install(
                 real_run=real_run,
@@ -211,7 +207,7 @@ class PyWfDeps:
         self: "PyWf",
         real_run: bool = True,
         verbose: bool = True,
-    ):  # pragma: no cover
+    ):
         with logger.disabled(disable=not verbose):
             return self._poetry_install_dev(
                 real_run=real_run,
@@ -295,7 +291,7 @@ class PyWfDeps:
         self: "PyWf",
         real_run: bool = True,
         verbose: bool = True,
-    ):  # pragma: no cover
+    ):
         with logger.disabled(disable=not verbose):
             return self._poetry_install_doc(
                 real_run=real_run,
@@ -337,7 +333,7 @@ class PyWfDeps:
         self: "PyWf",
         real_run: bool = True,
         verbose: bool = True,
-    ):  # pragma: no cover
+    ):
         with logger.disabled(disable=not verbose):
             return self._poetry_install_auto(
                 real_run=real_run,
@@ -380,7 +376,7 @@ class PyWfDeps:
         self: "PyWf",
         real_run: bool = True,
         verbose: bool = True,
-    ):  # pragma: no cover
+    ):
         with logger.disabled(disable=not verbose):
             return self._poetry_install_all(
                 real_run=real_run,
@@ -392,7 +388,7 @@ class PyWfDeps:
     def _do_we_need_poetry_export(
         self: "PyWf",
         current_poetry_lock_hash: str,
-    ) -> bool:  # pragma: no cover
+    ) -> bool:
         """
         The ``poetry export`` command is resource-intensive, so we use a
         caching mechanism to avoid unnecessary executions.
@@ -432,7 +428,7 @@ class PyWfDeps:
         self: "PyWf",
         with_hash: bool = False,
         real_run: bool = True,
-    ):  # pragma: no cover
+    ):
         """
         Export main project dependencies to ``requirements.txt``.
 
@@ -450,10 +446,7 @@ class PyWfDeps:
         ]
         if with_hash is False:
             args.append("--without-hashes")
-        print_command(args)
-        if real_run:
-            with temp_cwd(self.dir_project_root):
-                subprocess.run(args, check=True)
+        self.run_command(args, real_run)
 
     def _poetry_export_group(
         self: "PyWf",
@@ -461,7 +454,7 @@ class PyWfDeps:
         path: Path,
         with_hash: bool = False,
         real_run: bool = True,
-    ):  # pragma: no cover
+    ):
         """
         Export specific dependency group to ``requirements-{group}.txt``.
 
@@ -488,17 +481,14 @@ class PyWfDeps:
         args.append(group)
         if with_hash is False:
             args.append("--without-hashes")
-        print_command(args)
-        if real_run:
-            with temp_cwd(self.dir_project_root):
-                subprocess.run(args, check=True)
+        self.run_command(args, real_run)
 
     def _poetry_export_logic(
         self: "PyWf",
         current_poetry_lock_hash: str,
         with_hash: bool = False,
         real_run: bool = True,
-    ):  # pragma: no cover
+    ):
         """
         Run ``poetry export --format requirements.txt ...`` command and write
         the sha256 hash of the current ``poetry.lock`` file to the cache file.
@@ -580,7 +570,7 @@ class PyWfDeps:
         with_hash: bool = False,
         real_run: bool = True,
         verbose: bool = True,
-    ):  # pragma: no cover
+    ):
         with logger.disabled(disable=not verbose):
             flag = self._poetry_export(
                 with_hash=with_hash,

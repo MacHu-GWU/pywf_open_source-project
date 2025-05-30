@@ -4,17 +4,12 @@ import pytest
 
 from pywf_open_source.helpers import (
     sha256_of_bytes,
-    extract_digit_tokens,
     bump_version,
 )
 
 
 def test_sha256_of_bytes():
     _ = sha256_of_bytes(b"hello world")
-
-
-def test_extract_digit_tokens():
-    assert extract_digit_tokens("^1.23.456.*") == ["1", "23", "456"]
 
 
 def test_bump_version():

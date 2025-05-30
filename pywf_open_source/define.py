@@ -18,7 +18,7 @@ import typing as T
 
 try:
     import tomllib
-except ImportError:
+except ImportError:  # pragma: no cover
     import toml as tomllib
 import dataclasses
 from pathlib import Path
@@ -121,25 +121,16 @@ class PyWf(
 
     # --- GitHub.com
     @property
-    def github_account_field(self) -> str:
-        return self.toml_data["tool"]["pywf"]["github_account_field"]
-
-    @property
-    def github_user_field(self) -> str:
-        return self.toml_data["tool"]["pywf"]["github_user_field"]
+    def github_account(self) -> str:
+        return self.toml_data["tool"]["pywf"]["github_account"]
 
     @property
     def github_token_field(self) -> str:
         return self.toml_data["tool"]["pywf"]["github_token_field"]
 
     @cached_property
-    def github_token(self: "PyWf") -> str:
-        return hs.v(
-            f"providers.github.accounts."
-            f"{self.github_account_field}.users."
-            f"{self.github_user_field}.secrets."
-            f"{self.github_token_field}.value",
-        )
+    def github_token(self: "PyWf") -> str:  # pragma: no cover
+        return hs.v(self.github_token_field)
 
     @property
     def git_repo_name(self) -> str:
@@ -147,10 +138,6 @@ class PyWf(
         Git repo name.
         """
         return self.dir_project_root.name
-
-    @property
-    def github_account(self) -> str:
-        return hs.v(f"providers.github.accounts.{self.github_account_field}.account_id")
 
     @property
     def github_repo_fullname(self) -> str:
@@ -170,53 +157,25 @@ class PyWf(
 
     # --- codecov.io
     @property
-    def codecov_account_field(self) -> str:
-        return self.toml_data["tool"]["pywf"]["codecov_account_field"]
-
-    @property
-    def codecov_user_field(self) -> str:
-        return self.toml_data["tool"]["pywf"]["codecov_user_field"]
+    def codecov_account(self) -> str:
+        return self.toml_data["tool"]["pywf"]["codecov_account"]
 
     @property
     def codecov_token_field(self) -> str:
         return self.toml_data["tool"]["pywf"]["codecov_token_field"]
 
-    @property
-    def codecov_account(self) -> str:
-        return hs.v(
-            f"providers.codecov_io.accounts.{self.codecov_account_field}.account_id"
-        )
-
     @cached_property
-    def codecov_token(self) -> str:
-        return hs.v(
-            f"providers.codecov_io.accounts."
-            f"{self.codecov_account_field}.users."
-            f"{self.codecov_user_field}.secrets."
-            f"{self.codecov_token_field}.value",
-        )
+    def codecov_token(self) -> str:  # pragma: no cover
+        return hs.v(self.codecov_token_field)
 
     # --- readthedocs.org
-    @property
-    def readthedocs_account_field(self) -> str:
-        return self.toml_data["tool"]["pywf"]["readthedocs_account_field"]
-
-    @property
-    def readthedocs_user_field(self) -> str:
-        return self.toml_data["tool"]["pywf"]["readthedocs_user_field"]
-
     @property
     def readthedocs_token_field(self) -> str:
         return self.toml_data["tool"]["pywf"]["readthedocs_token_field"]
 
     @cached_property
-    def readthedocs_token(self) -> str:
-        return hs.v(
-            f"providers.readthedocs.accounts."
-            f"{self.readthedocs_account_field}.users."
-            f"{self.readthedocs_user_field}.secrets."
-            f"{self.readthedocs_token_field}.value",
-        )
+    def readthedocs_token(self) -> str:  # pragma: no cover
+        return hs.v(self.readthedocs_token_field)
 
     @property
     def readthedocs_project_name(self) -> str:
@@ -225,31 +184,6 @@ class PyWf(
     @property
     def readthedocs_project_name_slug(self) -> str:
         return self.readthedocs_project_name.replace("_", "-")
-
-    @property
-    def doc_host_aws_profile(self) -> str:  # pragma: no cover
-        """Retrieve AWS profile for documentation hosting."""
-        return self.toml_data["tool"]["pywf"]["doc_host_aws_profile"]
-
-    @property
-    def doc_host_s3_bucket(self) -> str:  # pragma: no cover
-        """Retrieve S3 bucket for documentation hosting."""
-        return self.toml_data["tool"]["pywf"]["doc_host_s3_bucket"]
-
-    @property
-    def doc_host_s3_prefix(self) -> str:  # pragma: no cover
-        """
-        Retrieve and sanitize S3 prefix for documentation hosting.
-
-        Ensures prefix does not start or end with '/' to maintain
-        consistent path formatting.
-        """
-        doc_host_s3_prefix = self.toml_data["tool"]["pywf"]["doc_host_s3_prefix"]
-        if doc_host_s3_prefix.startswith("/"):
-            doc_host_s3_prefix = doc_host_s3_prefix[1:]
-        if doc_host_s3_prefix.endswith("/"):
-            doc_host_s3_prefix = doc_host_s3_prefix[:-1]
-        return doc_host_s3_prefix
 
     def _validate_paths(self):
         """
@@ -260,16 +194,18 @@ class PyWf(
         - Verify presence of ``pyproject.toml``
         - Confirm ``package/__init__.py`` exists
         """
-        if isinstance(self.dir_project_root, Path) is False:
+        if isinstance(self.dir_project_root, Path) is False:  # pragma: no cover
             self.dir_project_root = Path(self.dir_project_root)
 
-        if self.dir_project_root.joinpath("pyproject.toml").exists() is False:
+        if (
+            self.dir_project_root.joinpath("pyproject.toml").exists() is False
+        ):  # pragma: no cover
             raise ValueError(
                 f"{self.dir_project_root} does not have a pyproject.toml file! "
                 f"it might not be a valid project root directory."
             )
         dir_python_lib = self.dir_project_root.joinpath(self.package_name)
-        if dir_python_lib.joinpath("__init__.py").exists() is False:
+        if dir_python_lib.joinpath("__init__.py").exists() is False:  # pragma: no cover
             raise ValueError(
                 f"{dir_python_lib} does not have a __init__.py file, "
                 f"the package name {self.package_name} might be invalid."
@@ -279,11 +215,11 @@ class PyWf(
         """
         Validate the Python version used in the project.
         """
-        if self.py_ver_major != 3:
+        if self.py_ver_major != 3:  # pragma: no cover
             raise ValueError(
                 f"Python major version has to be 3, but got {self.py_ver_major}."
             )
-        if self.py_ver_minor < 11:
+        if self.py_ver_minor < 11:  # pragma: no cover
             raise ValueError(
                 f"PyWf tool only support Python3.11+, but got {self.py_ver_major}.{self.py_ver_minor}"
             )

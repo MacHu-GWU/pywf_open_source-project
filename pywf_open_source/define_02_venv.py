@@ -57,10 +57,8 @@ class PyWfVenv:
             ]
             if quiet:
                 args.append("--quiet")
-            print_command(args)
+            self.run_command(args, real_run=real_run)
 
-            if real_run is True:
-                subprocess.run(args, check=True)
             args = [
                 f"{self.path_bin_poetry}",
                 "env",
@@ -69,10 +67,8 @@ class PyWfVenv:
             ]
             if quiet:
                 args.append("--quiet")
-            print_command(args)
-            if real_run is True:
-                with temp_cwd(self.dir_project_root):
-                    subprocess.run(args, check=True)
+            self.run_command(args, real_run=real_run)
+
             logger.info("done")
             return True
 
@@ -113,9 +109,10 @@ class PyWfVenv:
                 "-r",
                 f"{self.dir_venv}",
             ]
-            print_command(args)
-            if real_run:
-                shutil.rmtree(f"{self.dir_venv}", ignore_errors=True)
+            self.run_command(args, real_run)
+            # print_command(args)
+            # if real_run:
+            #     shutil.rmtree(f"{self.dir_venv}", ignore_errors=True)
             logger.info(f"done! {self.dir_venv} is removed.")
             return True
         else:

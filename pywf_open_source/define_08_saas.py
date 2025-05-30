@@ -10,7 +10,7 @@ from functools import cached_property
 
 try:
     import requests
-    from github import Github, Repository
+    from github import Github, Auth, Repository
 except ImportError:  # pragma: no cover
     pass
 
@@ -24,14 +24,14 @@ if T.TYPE_CHECKING:  # pragma: no cover
 
 
 @dataclasses.dataclass
-class PyWfSaas:  # pragma: no cover
+class PyWfSaas:
     """
     Namespace class for SaaS service setup automation.
     """
 
     @cached_property
     def gh(self: "PyWf") -> "Github":
-        return Github(self.github_token)
+        return Github(auth=Auth.Token(self.github_token))
 
     @logger.emoji_block(
         msg="Edit GitHub Repo metadata",
@@ -53,7 +53,7 @@ class PyWfSaas:  # pragma: no cover
         repo = self.gh.get_repo(self.github_repo_fullname)
         with logger.indent():
             logger.info(f"preview at {self.github_repo_url}")
-        if real_run:
+        if real_run:  # pragma: no cover
             repo.edit(
                 description=self.package_description,
                 homepage=self.readthedocs_doc_site_url,
@@ -96,7 +96,7 @@ class PyWfSaas:  # pragma: no cover
         }
         endpoint = "https://api.codecov.io/api/v2"
         url = f"{endpoint}/github/{self.github_account}/repos/{self.git_repo_name}/"
-        if real_run:
+        if real_run:  # pragma: no cover
             response = requests.get(url, headers=headers)
             response.raise_for_status()
             is_private = response.json()["private"]
@@ -104,7 +104,7 @@ class PyWfSaas:  # pragma: no cover
                 raise ValueError("You cannot use codecov.io for private repositories.")
 
         url = f"{endpoint}/github/{self.github_account}/repos/{self.git_repo_name}/config/"
-        if real_run:
+        if real_run:  # pragma: no cover
             response = requests.get(url, headers=headers)
             response.raise_for_status()
             upload_token = response.json()["upload_token"]
@@ -135,8 +135,8 @@ class PyWfSaas:  # pragma: no cover
         logger.info("Setting up codecov.io upload token on GitHub...")
         with logger.indent():
             logger.info(f"preview at {self.github_actions_secrets_settings_url}")
-        repo = self.gh.get_repo(self.github_repo_fullname)
-        if real_run:
+        if real_run:  # pragma: no cover
+            repo = self.gh.get_repo(self.github_repo_fullname)
             repo.create_secret(
                 secret_name="CODECOV_TOKEN",
                 unencrypted_value=codecov_io_upload_token,
@@ -194,7 +194,7 @@ class PyWfSaas:  # pragma: no cover
         endpoint = "https://readthedocs.org/api/v3"
 
         url = f"{endpoint}/projects/{self.readthedocs_project_name_slug}/"
-        if real_run:
+        if real_run: # pragma: no cover
             response = requests.get(url, headers=headers)
             if response.status_code == 200:
                 url = f"https://app.readthedocs.org/projects/{self.readthedocs_project_name_slug}/"
@@ -220,7 +220,7 @@ class PyWfSaas:  # pragma: no cover
             "versioning_scheme": "multiple_versions_with_translations",
             "tags": [],
         }
-        if real_run:
+        if real_run: # pragma: no cover
             response = requests.post(
                 url,
                 headers=headers,
