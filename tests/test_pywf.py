@@ -144,9 +144,10 @@ class Test:
             pywf.run_load_test(verbose=verbose)
 
         # --- documentation related
-        pywf.build_doc(verbose=verbose)
-        pywf.view_doc(real_run=False, verbose=verbose)
-        pywf.notebook_to_markdown(real_run=False, verbose=verbose)
+        if sys.platform == "linux":
+            pywf.build_doc(verbose=verbose)
+            pywf.view_doc(real_run=False, verbose=verbose)
+            pywf.notebook_to_markdown(real_run=False, verbose=verbose)
 
         # --- build
         pywf.python_build(verbose=verbose)

@@ -79,6 +79,7 @@ jobs:
         # Shell options: x=print commands before execution, e=exit on error
         run: |
           set -xe
+          sudo apt-get update && sudo apt-get install -y pandoc
       # Install project dependencies using Poetry
       - name: "Install dependencies"
         run: |
@@ -87,7 +88,6 @@ jobs:
           python -m site
           python -m pip install .
           python -m pip install -r requirements-test.txt
-          sudo apt-get update && sudo apt-get install -y pandoc
       # Run pytest with coverage reporting
       - name: "Run pytest"
         run: |
