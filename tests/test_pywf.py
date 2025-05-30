@@ -111,8 +111,8 @@ class Test:
 
     def test_action(self):
         pywf = self.pywf
-        # verbose = True
-        verbose = False
+        verbose = True
+        # verbose = False # use verbose = False to hit 100% coverage
         logger.info("")
 
         pywf.remove_virtualenv(verbose=verbose)
@@ -144,6 +144,7 @@ class Test:
             pywf.run_load_test(verbose=verbose)
 
         # --- documentation related
+        # windows doesn't have pandoc, so we don't build document in windows runtime for test
         if sys.platform == "linux":
             pywf.build_doc(verbose=verbose)
             pywf.view_doc(real_run=False, verbose=verbose)
