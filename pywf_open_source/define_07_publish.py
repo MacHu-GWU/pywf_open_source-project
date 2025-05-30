@@ -73,6 +73,7 @@ class PyWfPublish:
         minor: bool = False,
         patch: bool = False,
         real_run: bool = True,
+        verbose: bool = False,
     ):
         """
         Bump a semantic version. The current version has to be in x.y.z format,

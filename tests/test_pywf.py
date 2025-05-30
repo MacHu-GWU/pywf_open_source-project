@@ -151,20 +151,16 @@ class Test:
         pywf.python_build(verbose=verbose)
         pywf.poetry_build(verbose=verbose)
 
-        pywf.twine_upload(real_run=False)
-        pywf.poetry_publish(real_run=False)
-        pywf.bump_version(major=True, real_run=False)
-        pywf.bump_version(minor=True, real_run=False)
-        pywf.bump_version(patch=True, real_run=False)
+        pywf.twine_upload(real_run=False, verbose=verbose)
+        pywf.poetry_publish(real_run=False, verbose=verbose)
+        pywf.bump_version(major=True, real_run=False, verbose=verbose)
+        pywf.bump_version(minor=True, real_run=False, verbose=verbose)
+        pywf.bump_version(patch=True, real_run=False, verbose=verbose)
 
         # --- setup SAAS service
-        if IS_CI is False:
-            pywf.setup_codecov_io_upload_token_on_github(
-                real_run=False,
-                verbose=verbose,
-            )
-            pywf.setup_readthedocs_project(real_run=False, verbose=verbose)
-            pywf.edit_github_repo_metadata(real_run=False, verbose=verbose)
+        pywf.setup_codecov_io_upload_token_on_github(real_run=False, verbose=verbose)
+        pywf.setup_readthedocs_project(real_run=False, verbose=verbose)
+        pywf.edit_github_repo_metadata(real_run=False, verbose=verbose)
 
         # --- clean up
         pywf.remove_virtualenv(verbose=verbose)
