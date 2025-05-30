@@ -37,4 +37,8 @@ for path_src in dir_src.glob("**/*.*"):
     relpath = path_src.relative_to(dir_src)
     if path_pick.is_match(str(relpath)):
         path_dst = dir_dst / relpath
-        path_dst.write_bytes(path_src.read_bytes())
+        try:
+            path_dst.write_bytes(path_src.read_bytes())
+        except FileNotFoundError:
+            path_dst.parent.mkdir(parents=True, exist_ok=True)
+            path_dst.write_bytes(path_src.read_bytes())
