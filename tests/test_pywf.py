@@ -9,6 +9,7 @@ import os
 import sys
 import pytest
 
+from pywf_open_source.vendor.os_platform import IS_WINDOWS
 from pywf_open_source.paths import dir_project_root
 from pywf_open_source.logger import logger
 from pywf_open_source.api import PyWf
@@ -145,7 +146,7 @@ class Test:
 
         # --- documentation related
         # windows doesn't have pandoc, so we don't build document in windows runtime for test
-        if sys.platform == "linux":
+        if IS_WINDOWS is False:
             pywf.build_doc(verbose=verbose)
             pywf.view_doc(real_run=False, verbose=verbose)
             pywf.notebook_to_markdown(real_run=False, verbose=verbose)

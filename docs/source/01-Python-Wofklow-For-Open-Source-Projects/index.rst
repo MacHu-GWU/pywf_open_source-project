@@ -93,159 +93,147 @@ To simplify your workflow and avoid memorizing complex commands, ``PyWf`` includ
 
 The `bin/ directory <https://github.com/MacHu-GWU/pywf_open_source-project/tree/main/bin>`_ contains thin Python wrappers for all PyWf functionality:
 
-.. dropdown:: bin/s01_1_venv_create.py
+.. dropdown:: bin/g1_t2_s1_venv_create.py
 
-    .. literalinclude:: ../../../bin/s01_1_venv_create.py
+    .. literalinclude:: ../../../bin/g1_t2_s1_venv_create.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s01_2_venv_remove.py
+.. dropdown:: bin/g1_t2_s2_venv_remove.py
 
-    .. literalinclude:: ../../../bin/s01_2_venv_remove.py
+    .. literalinclude:: ../../../bin/g1_t2_s2_venv_remove.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_0_poetry_lock.py
+.. dropdown:: bin/g2_t1_s1_poetry_lock.py
 
-    .. literalinclude:: ../../../bin/s02_0_poetry_lock.py
+    .. literalinclude:: ../../../bin/g2_t1_s1_poetry_lock.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_1_install_only_root.py
+.. dropdown:: bin/g2_t1_s6_poetry_export.py
 
-    .. literalinclude:: ../../../bin/s02_1_install_only_root.py
+    .. literalinclude:: ../../../bin/g2_t1_s6_poetry_export.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_2_install.py
+.. dropdown:: bin/g2_t2_s1_install_only_root.py
 
-    .. literalinclude:: ../../../bin/s02_2_install.py
+    .. literalinclude:: ../../../bin/g2_t2_s1_install_only_root.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_3_install_dev.py
+.. dropdown:: bin/g2_t2_s2_install.py
 
-    .. literalinclude:: ../../../bin/s02_3_install_dev.py
+    .. literalinclude:: ../../../bin/g2_t2_s2_install.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_4_install_test.py
+.. dropdown:: bin/g2_t2_s3_install_dev.py
 
-    .. literalinclude:: ../../../bin/s02_4_install_test.py
+    .. literalinclude:: ../../../bin/g2_t2_s3_install_dev.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_5_install_doc.py
+.. dropdown:: bin/g2_t2_s4_install_test.py
 
-    .. literalinclude:: ../../../bin/s02_5_install_doc.py
+    .. literalinclude:: ../../../bin/g2_t2_s4_install_test.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_6_install_automation.py
+.. dropdown:: bin/g2_t2_s5_install_doc.py
 
-    .. literalinclude:: ../../../bin/s02_6_install_automation.py
+    .. literalinclude:: ../../../bin/g2_t2_s5_install_doc.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_7_install_all.py
+.. dropdown:: bin/g2_t2_s6_install_automation.py
 
-    .. literalinclude:: ../../../bin/s02_7_install_all.py
+    .. literalinclude:: ../../../bin/g2_t2_s6_install_automation.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s02_8_poetry_export.py
+.. dropdown:: bin/g2_t2_s7_install_all.py
 
-    .. literalinclude:: ../../../bin/s02_8_poetry_export.py
+    .. literalinclude:: ../../../bin/g2_t2_s7_install_all.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s03_1_run_unit_test.py
+.. dropdown:: bin/g3_t1_s1_run_unit_test.py
 
-    .. literalinclude:: ../../../bin/s03_1_run_unit_test.py
+    .. literalinclude:: ../../../bin/g3_t1_s1_run_unit_test.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s03_2_run_cov_test.py
+.. dropdown:: bin/g3_t2_s1_run_cov_test.py
 
-    .. literalinclude:: ../../../bin/s03_2_run_cov_test.py
+    .. literalinclude:: ../../../bin/g3_t2_s1_run_cov_test.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s03_3_view_cov_result.py
+.. dropdown:: bin/g3_t2_s2_view_cov_result.py
 
-    .. literalinclude:: ../../../bin/s03_3_view_cov_result.py
+    .. literalinclude:: ../../../bin/g3_t2_s2_view_cov_result.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s03_4_run_int_test.py
+.. dropdown:: bin/g3_t3_s1_run_int_test.py
 
-    .. literalinclude:: ../../../bin/s03_4_run_int_test.py
+    .. literalinclude:: ../../../bin/g3_t3_s1_run_int_test.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s03_5_run_load_test.py
+.. dropdown:: bin/g3_t4_s1_run_load_test.py
 
-    .. literalinclude:: ../../../bin/s03_5_run_load_test.py
+    .. literalinclude:: ../../../bin/g3_t4_s1_run_load_test.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s04_1_build_doc.py
+.. dropdown:: bin/g4_t1_s1_nb_to_md.py
 
-    .. literalinclude:: ../../../bin/s04_1_build_doc.py
+    .. literalinclude:: ../../../bin/g4_t1_s1_nb_to_md.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s04_2_view_doc.py
+.. dropdown:: bin/g4_t2_s1_build_doc.py
 
-    .. literalinclude:: ../../../bin/s04_2_view_doc.py
+    .. literalinclude:: ../../../bin/g4_t2_s1_build_doc.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s04_3_deploy_versioned_doc.py
+.. dropdown:: bin/g4_t2_s2_view_doc.py
 
-    .. literalinclude:: ../../../bin/s04_3_deploy_versioned_doc.py
+    .. literalinclude:: ../../../bin/g4_t2_s2_view_doc.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s04_4_deploy_latest_doc.py
+.. dropdown:: bin/g5_t1_s1_build_package.py
 
-    .. literalinclude:: ../../../bin/s04_4_deploy_latest_doc.py
+    .. literalinclude:: ../../../bin/g5_t1_s1_build_package.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s04_5_view_latest_doc.py
+.. dropdown:: bin/g5_t2_s1_publish_package.py
 
-    .. literalinclude:: ../../../bin/s04_5_view_latest_doc.py
+    .. literalinclude:: ../../../bin/g5_t2_s1_publish_package.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s05_1_build_package.py
+.. dropdown:: bin/g5_t2_s3_create_release.py
 
-    .. literalinclude:: ../../../bin/s05_1_build_package.py
+    .. literalinclude:: ../../../bin/g5_t2_s3_create_release.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s05_2_publish_package.py
+.. dropdown:: bin/g6_t1_s1_setup_codecov.py
 
-    .. literalinclude:: ../../../bin/s05_2_publish_package.py
+    .. literalinclude:: ../../../bin/g6_t1_s1_setup_codecov.py
        :language: python
        :linenos:
 
-.. dropdown:: bin/s05_3_create_release.py
+.. dropdown:: bin/g6_t1_s2_setup_readthedocs.py
 
-    .. literalinclude:: ../../../bin/s05_3_create_release.py
-       :language: python
-       :linenos:
-
-.. dropdown:: bin/s06_1_setup_codecov.py
-
-    .. literalinclude:: ../../../bin/s06_1_setup_codecov.py
-       :language: python
-       :linenos:
-
-.. dropdown:: bin/s06_2_setup_readthedocs.py
-
-    .. literalinclude:: ../../../bin/s06_2_setup_readthedocs.py
+    .. literalinclude:: ../../../bin/g6_t1_s2_setup_readthedocs.py
        :language: python
        :linenos:
 
@@ -253,7 +241,7 @@ The `bin/ directory <https://github.com/MacHu-GWU/pywf_open_source-project/tree/
 
     .. literalinclude:: ../../../bin/g6_t1_s3_edit_github_repo.py
        :language: python
-       :linenos:
+       :linenos: 
 
 These wrappers initialize PyWf using your project configuration and execute specific functions with sensible defaults.
 
