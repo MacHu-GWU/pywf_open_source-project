@@ -53,6 +53,7 @@ Core Functionality
 
 - :meth:`~pywf_open_source.define_08_saas.PyWfSaas.setup_codecov_io_upload_token_on_github`: Configures Codecov.io integration with GitHub Actions
 - :meth:`~pywf_open_source.define_08_saas.PyWfSaas.setup_readthedocs_project`: Sets up a ReadTheDocs project for hosting documentation
+- :meth:`~pywf_open_source.define_08_saas.PyWfSaas.edit_github_repo_metadata`: Edit GitHub repo metadata such as description and homepage URL
 - :meth:`~pywf_open_source.define_07_publish.PyWfPublish.publish_to_github_release`: Creates a GitHub Release for version tracking
 
 
@@ -62,35 +63,26 @@ PyWf reads configuration from the `[tool.pywf]` section in your `pyproject.toml`
 
 .. code-block:: toml
 
+    # python workflow tool config
     [tool.pywf]
+    # The specific python version you use for local development
     dev_python = "3.11.8"
     # --- github.com
-    # Put your GitHub account username in ``${HOME}/home_secret.json`` at
-    # ``providers.github.accounts.${github_account_field}.account_id``
-    github_account_field = "sh"
-    github_user_field = "sh"
+    github_account = "MacHu-GWU"
     # Create GitHub token in https://github.com/settings/tokens and put the token in
-    # ``${HOME}/home_secret.json`` at
-    # ``providers.github.accounts.${github_account_field}.users.${github_user_field}.secrets.${github_token_field}.value``
-    github_token_field = "full_repo_access"
+    # ``${HOME}/home_secret.json``
+    github_token_field = "providers.github.accounts.sh.users.sh.secrets.dev.value"
     # --- codecov.io (for code coverage test report)
-    # Put your Codecov account username in ``${HOME}/home_secret.json`` at
-    # ``providers.codecov.accounts.${codecov_account_field}.account_id``
-    codecov_account_field = "sh"
-    codecov_user_field = "sh"
-    # Create Codecov token in https://app.codecov.io/account/gh/${codecov_account}/access and put the token in
-    # ``${HOME}/home_secret.json`` at
-    # ``providers.codecov.accounts.${codecov_account_field}.users.${codecov_user_field}.secrets.${codecov_token_field}.value``
-    codecov_token_field = "dev"
+    codecov_account = "MacHu-GWU"
+    # Create Codecov token in https://app.codecov.io/account/gh/${codecov_account}/access
+    # and put the token in ``${HOME}/home_secret.json``
+    codecov_token_field = "providers.codecov_io.accounts.sh.users.sh.secrets.dev.value"
     # --- readthedocs.org (for documentation hosting)
-    readthedocs_account_field = "sh"
-    readthedocs_user_field = "sh"
-    # Create Readthedocs token in https://app.readthedocs.org/accounts/tokens/ and put the token at
-    # ``${HOME}/home_secret.json`` at
-    # ``providers.readthedocs.accounts.${readthedocs_account_field}.users.${readthedocs_user_field}.secrets.${readthedocs_token_field}.value``
-    readthedocs_token_field = "dev"
+    # Create Readthedocs token in https://app.readthedocs.org/accounts/tokens/
+    # and put the token at ``${HOME}/home_secret.json``
+    readthedocs_token_field = "providers.readthedocs.accounts.sh.users.sh.secrets.dev.value"
     # Readthedocs project name, usually it is the same as your project name
-    readthedocs_project_name = "pywf_open_source"
+    readthedocs_project_name = "cookiecutter_pywf_open_source_demo"
 
 
 Unified Command System
@@ -257,6 +249,12 @@ The `bin/ directory <https://github.com/MacHu-GWU/pywf_open_source-project/tree/
        :language: python
        :linenos:
 
+.. dropdown:: bin/g6_t1_s3_edit_github_repo.py
+
+    .. literalinclude:: ../../../bin/g6_t1_s3_edit_github_repo.py
+       :language: python
+       :linenos:
+
 These wrappers initialize PyWf using your project configuration and execute specific functions with sensible defaults.
 
 **Makefile Integration**
@@ -272,32 +270,34 @@ When you type ``make``, you will see:
 .. code-block:: bash
 
     $ make
-    help                                     ** Show this help message
-    venv-create                              ** Create Virtual Environment
-    venv-remove                              ** Remove Virtual Environment
-    poetry-lock                              Resolve dependencies using poetry, update poetry.lock file
+    help                                     ⭐ Show this help message
+    venv-create                              ⭐ Create Virtual Environment
+    venv-remove                              Remove Virtual Environment
+    poetry-lock                              ⭐ Resolve dependencies using poetry, update poetry.lock file
+    poetry-export                            Export dependencies to requirements.txt
     install-root                             Install Package itself without any dependencies
-    install                                  ** Install main dependencies and Package itself
+    install                                  ⭐ Install main dependencies and Package itself
     install-dev                              Install Development Dependencies
     install-test                             Install Test Dependencies
     install-doc                              Install Document Dependencies
     install-automation                       Install Dependencies for Automation Script
     install-all                              Install All Dependencies
-    poetry-export                            Export dependencies to requirements.txt
-    test                                     ** Run test
     test-only                                Run test without checking test dependencies
-    cov                                      ** Run code coverage test
+    test                                     ⭐ Run test
     cov-only                                 Run code coverage test without checking test dependencies
-    int                                      ** Run integration test
+    cov                                      ⭐ Run code coverage test
+    view-cov                                 ⭐ View code coverage test report
     int-only                                 Run integration test without checking test dependencies
-    view-cov                                 View code coverage test report
-    build-doc                                Build documentation website locally
-    view-doc                                 View documentation website locally
+    int                                      ⭐ Run integration test
+    nb-to-md                                 Convert Notebook to Markdown
+    build-doc                                ⭐ Build documentation website locally
+    view-doc                                 ⭐ View documentation website locally
     build                                    Build Python library distribution package
-    publish                                  Publish Python library to Public PyPI
-    release                                  Create Github Release using current version
-    setup-codecov                            Setup Codecov Upload token in GitHub Action Secrets
-    setup-rtd                                Create ReadTheDocs Project
+    publish                                  ⭐ Publish Python library to Public PyPI
+    release                                  ⭐ Create Github Release using current version
+    setup-codecov                            ⭐ Setup Codecov Upload token in GitHub Action Secrets
+    setup-rtd                                ⭐ Create ReadTheDocs Project
+    edit-github                              ⭐ Edit GitHub Repository Metadata
 
 When you type ``make cov``, it actually runs ``python bin/s03_2_run_cov_test.py``
 

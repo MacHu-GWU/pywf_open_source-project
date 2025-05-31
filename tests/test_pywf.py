@@ -111,7 +111,7 @@ class Test:
 
     def test_action(self):
         pywf = self.pywf
-        verbose = True
+        verbose = True # show more log for debugging
         # verbose = False # use verbose = False to hit 100% coverage
         logger.info("")
 
