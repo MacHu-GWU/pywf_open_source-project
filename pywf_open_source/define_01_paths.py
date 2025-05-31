@@ -10,7 +10,6 @@ import subprocess
 import dataclasses
 from pathlib import Path
 from functools import cached_property
-from .vendor.better_pathlib import temp_cwd
 
 from .helpers import print_command
 from .logger import logger
@@ -47,8 +46,6 @@ class PyWfPaths:
         print_command(args)
         if real_run is True:
             return subprocess.run(args, cwd=cwd, check=check)
-            # with temp_cwd(cwd):
-            #     return subprocess.run(args, check=check)
 
     @cached_property
     def dir_home(self: "PyWf") -> Path:

@@ -159,6 +159,7 @@ class Test:
         pywf.bump_version(major=True, real_run=False, verbose=verbose)
         pywf.bump_version(minor=True, real_run=False, verbose=verbose)
         pywf.bump_version(patch=True, real_run=False, verbose=verbose)
+        # Don't test publish_to_github_release() method here
 
         # --- setup SAAS service
         pywf.setup_codecov_io_upload_token_on_github(real_run=False, verbose=verbose)

@@ -7,13 +7,11 @@ Document Build and Deploy Automation for Python Projects.
 import typing as T
 import shutil
 import dataclasses
-import subprocess
 
 from .vendor.emoji import Emoji
 from .vendor.os_platform import OPEN_COMMAND
 
 from .logger import logger
-from .helpers import print_command
 
 if T.TYPE_CHECKING:  # pragma: no cover
     from .define import PyWf

@@ -10,15 +10,13 @@ and export ``requirements.txt`` functionalities.
 
 import typing as T
 import json
-import subprocess
 import dataclasses
 from pathlib import Path
 
 from .vendor.emoji import Emoji
-from .vendor.better_pathlib import temp_cwd
 
 from .logger import logger
-from .helpers import sha256_of_bytes, print_command
+from .helpers import sha256_of_bytes
 
 if T.TYPE_CHECKING:  # pragma: no cover
     from .define import PyWf

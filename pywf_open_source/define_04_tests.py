@@ -11,10 +11,8 @@ from pathlib import Path
 
 from .vendor.emoji import Emoji
 from .vendor.os_platform import OPEN_COMMAND
-from .vendor.better_pathlib import temp_cwd
 
 from .logger import logger
-from .helpers import print_command
 
 if T.TYPE_CHECKING:  # pragma: no cover
     from .define import PyWf

@@ -104,15 +104,9 @@ class PyWfVenv:
         :return: a boolean flag to indicate whether a deletion is performed.
         """
         if self.dir_venv.exists():
-            args = [
-                "rm",
-                "-r",
-                f"{self.dir_venv}",
-            ]
-            self.run_command(args, real_run)
-            # print_command(args)
-            # if real_run:
-            #     shutil.rmtree(f"{self.dir_venv}", ignore_errors=True)
+            # don't use rm -r here, we want it to be windows compatible
+            if real_run:
+                shutil.rmtree(f"{self.dir_venv}", ignore_errors=True)
             logger.info(f"done! {self.dir_venv} is removed.")
             return True
         else:
