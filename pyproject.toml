@@ -24,18 +24,6 @@ maintainers = [
 ]
 keywords = []
 readme = "README.rst"
-# Files to include in the package distribution
-include = [
-    "*.txt",
-    "*.rst",
-]
-# Files to exclude from the package
-exclude = [
-    "*.pyc",
-    "*.pyo",
-    "pywf_open_source/docs/*",
-    "pywf_open_source/tests/*",
-]
 requires-python = ">=3.9,<4.0"
 # Full list of classifiers: https://pypi.org/classifiers/
 classifier = [
@@ -126,6 +114,19 @@ Download = "https://pypi.org/pypi/pywf-open-source#files"
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.9.0,<2.0.0"
+
+[tool.poetry]
+# Files to include in the package distribution
+packages = [
+    { include = "pywf_open_source", from = ".", to = "." }
+]
+# Files to exclude from the package
+exclude = [
+    "pywf_open_source/tests/*",
+    "pywf_open_source/docs/*",
+    "**/*.pyc",
+    "**/*.pyo",
+]
 
 # python workflow tool config
 [tool.pywf]
