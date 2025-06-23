@@ -1,20 +1,24 @@
 # -*- coding: utf-8 -*-
 
 """
-Use ``.venv/bin/python tests/test_pywf.py`` to run this test,
-don't use PyCharm IDE, use a terminal instead.
+**IMPORTANT**:
+
+De-activate virtualenv first, then run ``.venv/bin/python tests/test_pywf.py``
+to run this test. And don't use PyCharm IDE, use a terminal instead.
+
+If you are still in venv, then poetry will use the dev venv rather than
+creating the .venv for the test project.
 """
 
-import os
+from pywf_open_source.api import PyWf
+
 import sys
 import pytest
 
 from pywf_open_source.vendor.os_platform import IS_WINDOWS
+from pywf_open_source.runtime import IS_CI
 from pywf_open_source.paths import dir_project_root
 from pywf_open_source.logger import logger
-from pywf_open_source.api import PyWf
-
-IS_CI = "CI" in os.environ
 
 
 class Test:
@@ -112,7 +116,7 @@ class Test:
 
     def test_action(self):
         pywf = self.pywf
-        verbose = True # show more log for debugging
+        verbose = True  # show more log for debugging
         # verbose = False # use verbose = False to hit 100% coverage
         logger.info("")
 
